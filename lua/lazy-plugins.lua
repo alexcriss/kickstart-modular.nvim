@@ -44,6 +44,7 @@ require('lazy').setup({
 
   require 'kickstart/plugins/treesitter',
 
+  require 'kickstart/plugins/projects',
   require 'kickstart/plugins/dap-ui',
   require 'kickstart/plugins/dap-go',
 
