@@ -2,6 +2,7 @@ return {
   'coffebar/neovim-project',
   opts = {
     projects = {
+      '~/svn',
       '~/repos/*',
       '~/.config/*',
     },
