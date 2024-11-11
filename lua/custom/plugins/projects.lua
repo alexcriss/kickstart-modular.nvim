@@ -2,13 +2,14 @@ return {
   'coffebar/neovim-project',
   opts = {
     projects = {
-      '~/svn',
-      '~/repos/*',
+      '~/Repos/*',
       '~/.config/*',
     },
     picker = {
       type = 'telescope',
     },
+    last_session_on_startup = false,
+    dashboard = false,
   },
   init = function()
     -- enable saving the state of plugins in the session
