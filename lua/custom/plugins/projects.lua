@@ -4,6 +4,9 @@ return {
     projects = {
       '~/Repos/*',
       '~/.config/*',
+      -- on the sandbox
+      '~/roles/*',
+      '/home/vipvdev/svn/*',
     },
     picker = {
       type = 'telescope',
