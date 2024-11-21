@@ -66,6 +66,10 @@ return {
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
+    config = function(opts)
+      require("which-key.plugins.presets").operators["v"] = nil
+      require("which-key").setup(opts)
+    end
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
