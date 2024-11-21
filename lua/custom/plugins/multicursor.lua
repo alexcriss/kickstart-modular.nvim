@@ -1,7 +1,16 @@
 return {
   'brenton-leighton/multiple-cursors.nvim',
   version = '*', -- Use the latest tagged version
-  opts = {}, -- This causes the plugin setup function to be called
+  opts = {
+    pre_hook = function()
+      require('nvim-autopairs').disable()
+      require("cmp").setup({enabled=false})
+    end,
+    post_hook = function()
+      require('nvim-autopairs').enable()
+      require("cmp").setup({enabled=true})
+    end,
+    }, -- This causes the plugin setup function to be called
   keys = {
     { '<C-j>', '<Cmd>MultipleCursorsAddDown<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and move down' },
     { '<C-k>', '<Cmd>MultipleCursorsAddUp<CR>', mode = { 'n', 'x' }, desc = 'Add cursor and move up' },
