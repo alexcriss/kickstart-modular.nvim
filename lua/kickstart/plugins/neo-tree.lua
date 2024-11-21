@@ -17,19 +17,19 @@ return {
     close_if_last_window = true,
     sources = {
       'filesystem',
-      'buffers',
-      'git_status',
+      -- 'buffers',
+      -- 'git_status',
       -- "document_symbols",
     },
     source_selector = {
-      winbar = true, -- toggle to show selector on winbar
+      winbar = false, -- toggle to show selector on winbar
       statusline = false, -- toggle to show selector on statusline
       show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
       -- of the top visible node when scrolled down.
       sources = {
         { source = 'filesystem' },
-        { source = 'buffers' },
-        { source = 'git_status' },
+        -- { source = 'buffers' },
+        -- { source = 'git_status' },
       },
       content_layout = 'center', -- only with `tabs_layout` = "equal", "focus"
       --                start  : |/ 󰓩 bufname     \/...
