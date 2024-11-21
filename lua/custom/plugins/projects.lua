@@ -3,10 +3,13 @@ return {
   opts = {
     projects = {
       '~/Repos/*',
+      '~/Personal/money/*',
+      '~/Personal/ireny/*',
       '~/.config/*',
       -- on the sandbox
       '~/roles/*',
-      '/home/vipvdev/svn/*',
+      '/svn/tags/*',
+      '/svn/migrations/*',
     },
     picker = {
       type = 'telescope',
@@ -22,6 +25,9 @@ return {
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope.nvim' },
     { 'Shatur/neovim-session-manager' },
+  },
+  keys = {
+    { '<Leader>op', '<Cmd>NeovimProjectDiscover<CR>', mode = { 'n', 'x' }, desc = '[O]pen [P]rojects picker' },
   },
   lazy = false,
   priority = 100,
