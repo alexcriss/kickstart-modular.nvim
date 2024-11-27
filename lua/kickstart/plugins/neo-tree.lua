@@ -22,8 +22,8 @@ return {
       -- "document_symbols",
     },
     source_selector = {
-      winbar = false, -- toggle to show selector on winbar
-      statusline = false, -- toggle to show selector on statusline
+      winbar = false,                        -- toggle to show selector on winbar
+      statusline = false,                    -- toggle to show selector on statusline
       show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
       -- of the top visible node when scrolled down.
       sources = {
@@ -62,6 +62,11 @@ return {
       highlight_background = 'NeoTreeTabInactive',
       highlight_separator = 'NeoTreeTabSeparatorInactive',
       highlight_separator_active = 'NeoTreeTabSeparatorActive',
+    },
+    window = {
+      mappings = {
+        ['Z'] = 'expand_all_nodes',
+      },
     },
     filesystem = {
       window = {
