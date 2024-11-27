@@ -24,7 +24,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -172,7 +172,7 @@ return {
             includeAllWorkspaceSymbols = true,
           },
         },
-        -- clangd = {},
+        clangd = {},
         gopls = {},
         intelephense = {
           init_options = {
@@ -191,6 +191,21 @@ return {
             },
           },
         },
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' },
+              },
+            },
+          },
+        },
+        ruff = {},
         ts_ls = {},
         yamlls = {},
       }
@@ -223,6 +238,9 @@ return {
           end,
         },
       }
+
+      -- sourcekit
+      require 'lspconfig'.sourcekit.setup {}
 
       -- Format imports when saving GoLang files
       vim.api.nvim_create_autocmd('BufWritePre', {
