@@ -178,6 +178,13 @@ return {
           init_options = {
             licenceKey = '~/.config/intelephense',
           },
+          settings = {
+            intelephense = {
+              format = {
+                enable = false
+              }
+            }
+          },
           root_dir = (require 'lspconfig.util').root_pattern { '.git', '.composer.json', '.svn' },
         },
         lua_ls = {
