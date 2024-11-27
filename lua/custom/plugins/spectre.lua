@@ -13,5 +13,17 @@ return {
     vim.keymap.set('n', '<leader>Sf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
       desc = '[S]pectre search on current [f]ile',
     })
+    require("spectre").setup({
+      replace_engine = {
+        ["sed"] = {
+          cmd = "sed",
+          args = {
+            "-i",
+            "",
+            "-E",
+          },
+        },
+      },
+    })
   end,
 }
