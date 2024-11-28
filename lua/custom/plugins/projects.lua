@@ -8,8 +8,8 @@ return {
       '~/.config/*',
       -- on the sandbox
       '~/roles/*',
-      '/svn/tags/*',
-      '/svn/migrations/*',
+      '~/svn/tags/*',
+      '~/svn/migrations/*',
     },
     picker = {
       type = 'telescope',
