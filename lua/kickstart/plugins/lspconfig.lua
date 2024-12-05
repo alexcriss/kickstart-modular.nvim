@@ -187,6 +187,7 @@ return {
           },
           root_dir = (require 'lspconfig.util').root_pattern { '.git', '.composer.json', '.svn' },
         },
+        jsonls = {},
         lua_ls = {
           settings = {
             Lua = {
