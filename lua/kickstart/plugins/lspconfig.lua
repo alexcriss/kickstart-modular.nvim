@@ -215,7 +215,18 @@ return {
         },
         ruff = {},
         ts_ls = {},
-        yamlls = {},
+        yamlls = {
+          validate = true,
+          format = { enable = true },
+          hover = true,
+          schemaStore = {
+            enable = true,
+            url = "https://www.schemastore.org/api/json/catalog.json",
+          },
+          schemaDownload = { enable = true },
+          schemas = {},
+          trace = { server = "debug" },
+        },
       }
 
       -- Ensure the servers and tools above are installed
