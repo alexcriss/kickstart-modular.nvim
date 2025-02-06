@@ -8,20 +8,20 @@ return {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add          = { text = '┃' },
-        change       = { text = '┃' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
+        add = { text = '┃' },
+        change = { text = '┃' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
         changedelete = { text = '~' },
-        untracked    = { text = '┆' },
+        untracked = { text = '┆' },
       },
       signs_staged = {
-        add          = { text = '┃' },
-        change       = { text = '┃' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
+        add = { text = '┃' },
+        change = { text = '┃' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
         changedelete = { text = '~' },
-        untracked    = { text = '┆' },
+        untracked = { text = '┆' },
       },
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
@@ -76,4 +76,3 @@ return {
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

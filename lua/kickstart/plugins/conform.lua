@@ -14,7 +14,7 @@ return {
       },
     },
     config = function()
-      require("conform").setup({
+      require('conform').setup {
         notify_on_error = false,
         format_on_save = function(bufnr)
           -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -36,7 +36,7 @@ return {
           }
         end,
         formatters_by_ft = {
-          -- lua = { 'stylua' },
+          lua = { 'stylua' },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
@@ -44,8 +44,7 @@ return {
           javascript = { 'prettier', 'eslint_d', stop_after_first = true },
           typescript = { 'prettier', 'eslint_d', stop_after_first = true },
         },
-      })
+      }
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

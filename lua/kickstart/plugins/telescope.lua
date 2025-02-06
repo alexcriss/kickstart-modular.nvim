@@ -30,7 +30,7 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -82,7 +82,7 @@ return {
           live_grep_args = {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
-            mappings = {         -- extend mappings
+            mappings = { -- extend mappings
               i = {
                 ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
                 ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
@@ -109,8 +109,7 @@ return {
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-        { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, { desc = 'Search Recent Files' })
@@ -137,4 +136,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

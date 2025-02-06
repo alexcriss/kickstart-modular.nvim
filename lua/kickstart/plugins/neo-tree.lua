@@ -23,8 +23,8 @@ return {
         -- "document_symbols",
       },
       source_selector = {
-        winbar = false,                        -- toggle to show selector on winbar
-        statusline = false,                    -- toggle to show selector on statusline
+        winbar = false, -- toggle to show selector on winbar
+        statusline = false, -- toggle to show selector on statusline
         show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
         -- of the top visible node when scrolled down.
         sources = {
@@ -67,8 +67,8 @@ return {
       window = {
         mappings = {
           ['Z'] = 'expand_all_nodes',
-          ['F'] = "find_in_dir",
-          ['Y'] = "copy_selector",
+          ['F'] = 'find_in_dir',
+          ['Y'] = 'copy_selector',
         },
       },
       filesystem = {
@@ -86,8 +86,8 @@ return {
         find_in_dir = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
-          require("telescope.builtin").find_files {
-            cwd = node.type == "directory" and path or vim.fn.fnamemodify(path, ":h"),
+          require('telescope.builtin').find_files {
+            cwd = node.type == 'directory' and path or vim.fn.fnamemodify(path, ':h'),
           }
         end,
         copy_selector = function(state)
@@ -97,33 +97,37 @@ return {
           local modify = vim.fn.fnamemodify
 
           local vals = {
-            ["BASENAME"] = modify(filename, ":r"),
-            ["EXTENSION"] = modify(filename, ":e"),
-            ["FILENAME"] = filename,
-            ["PATH (CWD)"] = modify(filepath, ":."),
-            ["PATH (HOME)"] = modify(filepath, ":~"),
-            ["PATH"] = filepath,
-            ["URI"] = vim.uri_from_fname(filepath),
+            ['BASENAME'] = modify(filename, ':r'),
+            ['EXTENSION'] = modify(filename, ':e'),
+            ['FILENAME'] = filename,
+            ['PATH (CWD)'] = modify(filepath, ':.'),
+            ['PATH (HOME)'] = modify(filepath, ':~'),
+            ['PATH'] = filepath,
+            ['URI'] = vim.uri_from_fname(filepath),
           }
 
-          local options = vim.tbl_filter(function(val) return vals[val] ~= "" end, vim.tbl_keys(vals))
+          local options = vim.tbl_filter(function(val)
+            return vals[val] ~= ''
+          end, vim.tbl_keys(vals))
           if vim.tbl_isempty(options) then
-            vim.notify("No values to copy", vim.log.levels.WARN)
+            vim.notify('No values to copy', vim.log.levels.WARN)
             return
           end
           table.sort(options)
           vim.ui.select(options, {
-            prompt = "Choose to copy to clipboard:",
-            format_item = function(item) return ("%s: %s"):format(item, vals[item]) end,
+            prompt = 'Choose to copy to clipboard:',
+            format_item = function(item)
+              return ('%s: %s'):format(item, vals[item])
+            end,
           }, function(choice)
             local result = vals[choice]
             if result then
-              vim.notify(("Copied: `%s`"):format(result))
-              vim.fn.setreg("+", result)
+              vim.notify(('Copied: `%s`'):format(result))
+              vim.fn.setreg('+', result)
             end
           end)
-        end
+        end,
       },
     }
-  end
+  end,
 }

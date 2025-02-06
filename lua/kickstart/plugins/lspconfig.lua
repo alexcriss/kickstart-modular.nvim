@@ -24,7 +24,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -181,9 +181,9 @@ return {
           settings = {
             intelephense = {
               format = {
-                enable = false
-              }
-            }
+                enable = false,
+              },
+            },
           },
           root_dir = (require 'lspconfig.util').root_pattern { '.git', '.composer.json', '.svn' },
         },
@@ -221,11 +221,11 @@ return {
           hover = true,
           schemaStore = {
             enable = true,
-            url = "https://www.schemastore.org/api/json/catalog.json",
+            url = 'https://www.schemastore.org/api/json/catalog.json',
           },
           schemaDownload = { enable = true },
           schemas = {},
-          trace = { server = "debug" },
+          trace = { server = 'debug' },
         },
       }
 
@@ -259,7 +259,7 @@ return {
       }
 
       -- sourcekit
-      require 'lspconfig'.sourcekit.setup {}
+      require('lspconfig').sourcekit.setup {}
 
       -- Format imports when saving GoLang files
       vim.api.nvim_create_autocmd('BufWritePre', {
@@ -287,4 +287,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

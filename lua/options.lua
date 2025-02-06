@@ -91,10 +91,10 @@ vim.diagnostic.config {
   underline = true,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN]  = "",
-      [vim.diagnostic.severity.INFO]  = "",
-      [vim.diagnostic.severity.HINT]  = "",
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
     },
     linehl = {
       [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
@@ -104,5 +104,3 @@ vim.diagnostic.config {
     },
   },
 }
-
--- vim: ts=2 sts=2 sw=2 et
