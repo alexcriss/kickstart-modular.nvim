@@ -21,6 +21,9 @@ return {
           -- have a well standardized coding style. You can add additional
           -- languages here or re-enable it for the disabled ones.
           local disable_filetypes = { c = true, cpp = true, sh = true, json = true, jsonc = true }
+          if vim.env.SSH_TTY then
+            disable_filetypes = { c = true, cpp = true, sh = true, json = true, jsonc = true, lua = true }
+          end
           local lsp_format_opt
           if disable_filetypes[vim.bo[bufnr].filetype] then
             lsp_format_opt = 'never'
