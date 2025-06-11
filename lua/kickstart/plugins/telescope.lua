@@ -54,6 +54,8 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local open_with_trouble = require('trouble.sources.telescope').open
+
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -83,9 +85,13 @@ return {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
             mappings = { -- extend mappings
+              n = {
+                ['<C-x>'] = open_with_trouble,
+              },
               i = {
                 ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
                 ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
+                ['<C-x>'] = open_with_trouble,
                 -- freeze the current list and start a fuzzy search in the frozen list
                 ['<C-space>'] = require('telescope.actions').to_fuzzy_refine,
               },
