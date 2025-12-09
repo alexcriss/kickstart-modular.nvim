@@ -66,7 +66,7 @@ local servers = {
   ts_ls = {},
   yamlls = {
     validate = true,
-    format = { enable = true },
+    format = { enable = false },
     hover = true,
     schemaStore = {
       enable = true,
