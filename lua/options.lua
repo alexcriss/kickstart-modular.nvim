@@ -87,9 +87,15 @@ vim.opt.scrolloff = 10
 vim.opt.autoindent = true
 
 vim.diagnostic.config {
-  virtual_text = true, -- floating text next to code is too noisy.
-  underline = true,
+  virtual_text = {
+    current_line = false,
+    severity = { min = vim.diagnostic.severity.INFO },
+  },
+  underline = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
   signs = {
+    severity = { min = vim.diagnostic.severity.INFO },
     text = {
       [vim.diagnostic.severity.ERROR] = '',
       [vim.diagnostic.severity.WARN] = '',
