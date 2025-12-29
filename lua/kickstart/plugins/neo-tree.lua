@@ -65,6 +65,7 @@ return {
         highlight_separator_active = 'NeoTreeTabSeparatorActive',
       },
       window = {
+        width = '60',
         mappings = {
           ['Z'] = 'expand_all_nodes',
           ['F'] = 'find_in_dir',
