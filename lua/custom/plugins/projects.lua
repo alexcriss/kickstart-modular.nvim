@@ -3,6 +3,7 @@ return {
   opts = {
     projects = {
       '~/Repos/*',
+      '~/Personal/home/*',
       '~/Personal/*',
       '~/.config/*',
       -- on the sandbox
