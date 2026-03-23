@@ -4,6 +4,7 @@ return {
     projects = {
       '~/Repos/*',
       '~/Personal/home/*',
+      '~/Personal/money/*',
       '~/Personal/*',
       '~/.config/*',
       -- on the sandbox
