@@ -132,7 +132,7 @@ return {
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>/', function()
-        builtin.find_files { hidden = true }
+        builtin.find_files { hidden = true, no_ignore = true }
       end, { desc = 'Search[/] files' })
 
       -- Shortcut for searching your Neovim configuration files
