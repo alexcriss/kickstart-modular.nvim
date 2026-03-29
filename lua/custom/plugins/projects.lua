@@ -5,6 +5,7 @@ return {
       '~/Repos/*',
       '~/Personal/home/*',
       '~/Personal/money/*',
+      '~/Personal/alerts/*',
       '~/Personal/*',
       '~/.config/*',
       -- on the sandbox
