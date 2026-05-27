@@ -13,18 +13,6 @@ return {
     vim.keymap.set('n', '<leader>Sf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
       desc = '[S]pectre search on current [f]ile',
     })
-    if vim.env.SSH_TTY == nil then
-      opts.replace_engine = {
-        ['sed'] = {
-          cmd = 'sed',
-          args = {
-            '-i',
-            '',
-            '-E',
-          },
-        },
-      }
-    end
     require('spectre').setup(opts)
   end,
 }
