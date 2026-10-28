@@ -1,112 +1,77 @@
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+local o = vim.o
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+o.number = true
+o.mouse = 'a'
+o.showmode = false
+o.breakindent = true
+o.undofile = true
+o.ignorecase = true
+o.smartcase = true
+o.signcolumn = 'yes'
+o.updatetime = 250
+o.timeoutlen = 300
+o.splitright = true
+o.splitbelow = true
+o.list = false
+o.listchars = 'tab:-> ,trail:·,nbsp:␣'
+o.inccommand = 'split'
+o.cursorline = true
+o.scrolloff = 10
+o.winborder = 'rounded'
+o.pumborder = 'rounded'
+o.pummaxwidth = 80
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+o.autocomplete = false
+o.complete = 'o,.^5,w^5,b^5'
+o.completeopt = 'menu,menuone,noselect,fuzzy,popup'
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+-- Buffers loaded while events were suppressed (session restore, picker previews)
+-- never get a filetype, so LSP and treesitter never start for them.
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = vim.api.nvim_create_augroup('late-filetype-detect', { clear = true }),
+  callback = function(ev)
+    if vim.bo[ev.buf].filetype == '' and vim.bo[ev.buf].buftype == '' and vim.api.nvim_buf_get_name(ev.buf) ~= '' then
+      vim.cmd 'filetype detect'
+    end
+  end,
+})
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+o.grepprg = 'rg --vimgrep --smart-case --hidden --glob !.git'
+o.grepformat = '%f:%l:%c:%m'
+
+o.sessionoptions = o.sessionoptions .. ',globals'
+
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-
-  local function paste()
-    return {
-      vim.split(vim.fn.getreg '', '\n'),
-      vim.fn.getregtype '',
-    }
-  end
-
+  o.clipboard = 'unnamedplus'
   if vim.env.SSH_TTY then
+    local osc52 = require 'vim.ui.clipboard.osc52'
+    local function paste()
+      return { vim.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+    end
     vim.g.clipboard = {
       name = 'OSC 52',
-      copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-        ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-      },
-      paste = {
-        ['+'] = paste,
-        ['*'] = paste,
-      },
+      copy = { ['+'] = osc52.copy '+', ['*'] = osc52.copy '*' },
+      paste = { ['+'] = paste, ['*'] = paste },
     }
   end
 end)
 
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = false
-vim.opt.listchars = { tab = '-> ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- autoindent
-vim.opt.autoindent = true
-
 vim.diagnostic.config {
-  virtual_text = {
-    current_line = false,
-    severity = { min = vim.diagnostic.severity.INFO },
-  },
-  underline = {
-    severity = { min = vim.diagnostic.severity.ERROR },
-  },
+  virtual_text = { current_line = false, severity = { min = vim.diagnostic.severity.INFO } },
+  underline = { severity = { min = vim.diagnostic.severity.ERROR } },
   signs = {
     severity = { min = vim.diagnostic.severity.INFO },
     text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.INFO] = '',
-      [vim.diagnostic.severity.HINT] = '',
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
     },
-    linehl = {
-      [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-    },
-    numhl = {
-      [vim.diagnostic.severity.WARN] = 'WarningMsg',
-    },
+    linehl = { [vim.diagnostic.severity.ERROR] = 'ErrorMsg' },
+    numhl = { [vim.diagnostic.severity.WARN] = 'WarningMsg' },
   },
 }
+
+if #vim.api.nvim_list_uis() > 0 then
+  require('vim._core.ui2').enable {}
+end
