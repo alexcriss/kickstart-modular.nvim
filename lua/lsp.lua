@@ -19,6 +19,7 @@ local servers = {
   },
   perlnavigator = {},
   ruff = {},
+  rust_analyzer = {},
   ty = {},
   ts_ls = {},
   yamlls = {
