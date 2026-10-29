@@ -56,3 +56,17 @@ require('gitsigns').setup {
     map('n', '<leader>tD', gs.toggle_deleted, 'Toggle deleted lines')
   end,
 }
+
+local function difftool(args)
+  vim.system(vim.list_extend({ 'git', 'difftool', '--dir-diff', '--no-prompt' }, args), { detach = true })
+end
+vim.keymap.set('n', '<leader>gd', function()
+  difftool {}
+end, { desc = 'Difftool: working tree vs index' })
+vim.keymap.set('n', '<leader>gD', function()
+  vim.ui.input({ prompt = 'Diff against (rev or range)', default = 'HEAD' }, function(rev)
+    if rev and rev ~= '' then
+      difftool(vim.split(rev, ' ', { trimempty = true }))
+    end
+  end)
+end, { desc = 'Difftool: working tree vs revision' })

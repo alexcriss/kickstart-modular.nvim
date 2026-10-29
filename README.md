@@ -65,6 +65,9 @@ Git: `<leader>gg` lazygit, `<leader>gs` status, `<leader>gl` log, `<leader>gL` f
 `]c` `[c` hunks, `<leader>hs` stage/unstage hunk, `<leader>hr` reset, `<leader>hp` preview,
 `<leader>hb` blame, `<leader>hd` diff against index, `<leader>tb` line blame.
 `:DiffTool a b` diffs files or directories, `<leader>u` opens the undo tree.
+`<leader>gd` opens `git difftool --dir-diff` (Araxis Merge) for the working tree against
+the index, `<leader>gD` asks for a revision or range (`HEAD`, `main...`, `HEAD~3 HEAD`).
+Araxis sees symlinks to the real working-tree files, so edits there land in the repo.
 
 Multicursor: `<C-n>` add a cursor on the next match of the word/selection (then `q` skips
 one, `Q` removes the current cursor), `<C-Up>` `<C-Down>` add cursors vertically,
